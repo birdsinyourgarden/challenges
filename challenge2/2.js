@@ -24,3 +24,72 @@ const gifts = ['libro', 'ps5']
 const materials = 'psli'
 
 manufacture(gifts, materials) // [] */
+
+const gifts = ['tren', 'oso', 'pelota'];
+const materials = 'tronesa';
+
+function manufacture(gifts, materials) {
+    let craftable = [];
+    gifts.forEach((gift) => {
+        let count = 0;
+        for (let i = 0; i < gift.length; i++) {
+            if (materials.includes(gift.at(i))) {
+                count++;
+            }
+        }
+        if (gift.length === count) {
+            craftable.push(gift);
+        }
+    });
+    console.log(craftable);
+}
+
+manufacture(gifts, materials);
+
+
+// otra forma de hacerlo
+
+const manufacture = (gifts, materials) => {
+    const manufacturable =  gifts.filter(g => {
+        for (const letter in g) {
+            if (!materials.includes(g[letter])) {
+                return false;
+            }
+        }
+        return true;
+    });
+    console.log(manufacturable);
+}
+
+// otra forma de hacerlo
+
+function manufacture(gifts, materials) {
+    const giftsAble= [];
+    gifts.forEach(gift => {
+        let condition = true;
+        for (let i = 0; i < gift.length; i++) {
+            if(!materials.includes(gift[i])){
+                condition = false;
+                break;
+            }
+        }
+        if(condition){
+            giftsAble.push(gift);
+        }
+    });
+
+    return giftsAble;
+}
+
+const gifts = ['tren', 'oso', 'pelota']
+const materials = 'tronesa'
+console.log(manufacture(gifts, materials));
+
+
+
+
+
+
+
+
+
