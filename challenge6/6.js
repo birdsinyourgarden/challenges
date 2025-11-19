@@ -16,6 +16,36 @@ Ejemplos: decodeFilename('2023122512345678_sleighDesign.png.grinchwa') // ➞ "s
  * @returns {string} The decoded filename.
  */
 function decodeFilename(filename) {
-  // Code here
-  return ''
+  let parts = filename.split('_');
+  let rightPart = parts.slice(1).join('_');
+  let finalParts = rightPart.split('.');
+  finalParts.pop();
+  return finalParts.join('.');
+}
+
+console.log(decodeFilename('2023122512345678_sleighDesign.png.grinchwa'));
+console.log(decodeFilename('42_chimney_dimensions.pdf.hack2023'));
+console.log(decodeFilename('987654321_elf-roster.csv.tempfile'));
+
+
+// otra forma de hacerlo 
+
+decodeFilename(filename) {
+  const regex = /^\d+_(.+)\.[^.]+$/;
+  const match = filename.match(regex);
+
+  return match ? match[1] : null;
+}
+
+console.log(decodeFilename('2023122512345678_sleighDesign.png.grinchwa')); 
+console.log(decodeFilename('42_chimney_dimensions.pdf.hack2023')); 
+console.log(decodeFilename('987654321_elf-roster.csv.tempfile'));
+
+// otra forma de hacerlo
+
+function decodeFilename(texto){
+  let guionBajo = texto.indexOf('_');
+  let punto = texto.lastIndexOf('.');
+  let textoFinal = texto.substring(guionBajo + 1, punto);
+  return textoFinal;
 }

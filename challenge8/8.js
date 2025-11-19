@@ -55,6 +55,41 @@ organizeInventory(inventory2)
  * @returns {object} The organized inventory
  */
 function organizeInventory(inventory) {
-  // Code here
-  return {}
+const inventoryOrganized = {};
+  /* for (let i = 0; i < inventory.length; i++){
+    const name = inventory[i].name;
+    const quantity = inventory[i].quantity;
+    const category = inventory[i].category;*/
+
+    // forEach (sustituimos desde la línea 59 a la 62)
+    inventory.forEach(item => {
+      const { name, quantity, category } = item;
+
+    if(!inventoryOrganized[category]) {
+      inventoryOrganized[category] = {};
+    }
+
+    if (!inventoryOrganized[category][name]) {
+      inventoryOrganized[category][name] = quantity;
+    } else {
+      inventoryOrganized[category][name] += quantity;
+    }
+  });
+  return inventoryOrganized;
 }
+
+const inventory1 = [
+  { name: 'doll', quantity: 5, category: 'toys' },
+  { name: 'car', quantity: 3, category: 'toys' },
+  { name: 'ball', quantity: 2, category: 'sports' },
+  { name: 'car', quantity: 2, category: 'toys' },
+  { name: 'racket', quantity: 4, category: 'sports' }
+];
+
+console.log(organizeInventory(inventory1));
+
+const inventory2 = [
+  { name: 'book', quantity: 10, category: 'education' },
+  { name: 'book', quantity: 5, category: 'education' },
+  { name: 'paint', quantity: 3, category: 'art' }
+];
