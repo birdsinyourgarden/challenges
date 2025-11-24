@@ -6,6 +6,27 @@
  * - Imprime el cálculo del área de un polígono de cada tipo.
  */
 
+
+function calcularArea(poligono) {
+    let area;
+    
+    if (poligono.tipo === "triangulo") {
+        area = (poligono.base * poligono.altura) / 2;
+        console.log(`Área del triángulo: ${area}`);
+    } else if (poligono.tipo === "cuadrado") {
+        area = poligono.lado * poligono.lado;
+        console.log(`Área del cuadrado: ${area}`);
+    } else if (poligono.tipo === "rectangulo") {
+        area = poligono.base * poligono.altura;
+        console.log(`Área del rectángulo: ${area}`);
+    } else {
+        console.log("Polígono no soportado");
+        return null;
+    }
+    
+    return area;
+}
+
 // Ejemplos de uso:
 
 // Triángulo con base 5 y altura 3

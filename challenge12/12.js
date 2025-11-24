@@ -31,3 +31,56 @@ Día 7: Temp=18.0°C, Prob. Lluvia=30%, Llueve=No
 
 Temperatura máxima: 20°C, mínima: 18°C
 Días que va a llover: 2 */
+
+function simularClima(tempInicial, probLluviaInicial, dias) {
+    let temperatura = tempInicial;
+    let probLluvia = probLluviaInicial;
+    let tempMaxima = tempInicial;
+    let tempMinima = tempInicial;
+    let diasLluvia = 0;
+    
+    for (let dia = 1; dia <= dias; dia++) {
+        const llueve = Math.random() * 100 < probLluvia;
+        
+        if (llueve) {
+            diasLluvia++;
+        }
+        
+        console.log(`Día ${dia}: Temp=${temperatura.toFixed(1)}°C, Prob. Lluvia=${probLluvia}%, Llueve=${llueve ? 'Sí' : 'No'}`);
+        
+        if (temperatura > tempMaxima) {
+            tempMaxima = temperatura;
+        }
+        if (temperatura < tempMinima) {
+            tempMinima = temperatura;
+        }
+        
+        if (dia < dias) {
+            const cambioTemp = Math.random();
+            if (cambioTemp < 0.05) {
+                temperatura += 2;
+            } else if (cambioTemp < 0.10) {
+                temperatura -= 2;
+            }
+            
+            if (llueve) {
+                temperatura -= 1;
+            }
+            
+            if (temperatura > 25) {
+                probLluvia += 20;
+                if (probLluvia > 100) probLluvia = 100;
+            }
+            
+            if (temperatura < 5) {
+                probLluvia -= 20;
+                if (probLluvia < 0) probLluvia = 0;
+            }
+        }
+    }
+    
+    console.log(`\nTemperatura máxima: ${tempMaxima}°C, mínima: ${tempMinima}°C`);
+    console.log(`Días que va a llover: ${diasLluvia}`);
+}
+
+simularClima(20, 30, 7);

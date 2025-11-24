@@ -18,3 +18,31 @@
  *
  *  Resultado: 1.302.790
  */
+
+function leerAbaco(abaco) {
+    const numero = abaco.map(e => e.indexOf("---")).join("");
+    
+    let numeroFormateado = "";
+    let contador = 0;
+    
+    for (let i = numero.length - 1; i >= 0; i--) {
+        if (contador === 3) {
+            numeroFormateado = "." + numeroFormateado;
+            contador = 0;
+        }
+        numeroFormateado = numero[i] + numeroFormateado;
+        contador++;
+    }
+    
+    return numeroFormateado;
+}
+
+console.log(leerAbaco([
+    "O---OOOOOOOO",
+    "OOO---OOOOOO",
+    "---OOOOOOOOO",
+    "OO---OOOOOOO",
+    "OOOOOOO---OO",
+    "OOOOOOOOO---",
+    "---OOOOOOOOO"
+]));
