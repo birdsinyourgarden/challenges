@@ -35,6 +35,35 @@ Puede haber tramos que no pertenezcan a la ruta; estos deben ignorarse. /*
  * @returns {string[]} The reconstructed route
  */
 function revealSantaRoute(routes) {
-  // Code here
-  return []
+  const rutaMap=new Map(routes); 
+  let actual=routes[0][0];       
+  const ruta=[actual];
+
+  while (rutaMap.has(actual)) {
+    actual=rutaMap.get(actual);
+    ruta.push(actual);
+  }
+  return ruta;
+}
+
+// otra forma de hacerlo
+function revealSantaRoute(routes) {
+  const ruta = [...routes[0]];
+  let encontrado = true;
+
+  while (encontrado) {
+    encontrado = false;
+    const ultimaCiudad = ruta[ruta.length - 1];
+
+    for (let i = 1; i < routes.length; i++) {
+      if (routes[i][0] === ultimaCiudad) {
+        ruta.push(routes[i][1]);
+        routes.splice(i, 1);
+        encontrado = true;
+        break;
+      }
+    }
+  }
+
+  return ruta;
 }

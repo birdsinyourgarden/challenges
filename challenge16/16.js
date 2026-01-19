@@ -37,6 +37,30 @@ packGifts([], 10)
  * Return null if no sleigh can carry all the gifts
  */
 function packGifts(gifts, maxWeight) {
-  // Code here
-  return null
+    let trineos = 0;
+    let pesoActual = 0;
+
+    for (let i = 0; i < gifts.length; i++) {
+        if (gifts[i] > maxWeight) {
+            return null;
+        }
+        if (pesoActual + gifts[i] > maxWeight) {
+            trineos++;
+            pesoActual = gifts[i];
+        } else {
+            pesoActual += gifts[i];
+        }
+    }
+
+    if (pesoActual > 0) {
+        trineos++;
+    }
+
+    return trineos;
 }
+
+console.log(packGifts([2, 3, 4, 1], 5)); 
+console.log(packGifts([3, 3, 2, 1], 3));
+console.log(packGifts([1, 1, 1, 1], 2));
+console.log(packGifts([5, 6, 1], 5)); 
+console.log(packGifts([], 10));  

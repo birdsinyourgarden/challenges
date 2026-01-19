@@ -30,7 +30,7 @@ dropGifts(
     ['#', '#', '#']
   ],
   [0, 2]
-) /*
+) */
 /*
 [
   ['#', '.', '.'],
@@ -39,14 +39,14 @@ dropGifts(
 ]
 */
 
-dropGifts(
+/*dropGifts(
   [
     ['.', '.', '.'],
     ['.', '.', '.'],
     ['.', '.', '.']
   ],
   [0, 1, 2]
-)
+)*/
 /*
 [
   ['.', '.', '.'],
@@ -55,13 +55,13 @@ dropGifts(
 ]
 */
 
-dropGifts(
+/* dropGifts(
   [
-    ['#', '#']
+    ['#', '#'],
     ['#', '#']
   ],
   [0, 0]
-)
+)*/
 /*
 [
   ['#', '#']
@@ -75,6 +75,58 @@ dropGifts(
  * @returns {string[][]}
  */
 function dropGifts(warehouse, drops) {
-  // Code here
-  return []
+  for (let i = 0; i < drops.length; i++) {
+    let col = drops[i];
+
+    for (let row = warehouse.length - 1; row >= 0; row--) {
+      if (warehouse[row][col] === '.') {
+        warehouse[row][col] ='#';
+        break;
+      }
+    }
+  }
+  return warehouse;
 }
+
+
+let result1 = dropGifts(
+  [
+    ['.', '.', '.'],
+    ['.', '#', '.'],
+    ['#', '#', '.']
+  ],
+  [0]
+);
+console.log(result1);
+
+
+let result2 = dropGifts(
+  [
+    ['.', '.', '.'],
+    ['#', '#', '.'],
+    ['#', '#', '#']
+  ],
+  [0, 2]
+);
+console.log(result2);
+
+let result3 = dropGifts(
+  [
+    ['.', '.', '.'],
+    ['.', '.', '.'],
+    ['.', '.', '.']
+  ],
+  [0, 1, 2]
+);
+
+console.log(result3);
+
+let result4 = dropGifts(
+  [
+    ['#', '#'],
+    ['#', '#']
+  ],
+  [0, 0]
+);
+
+console.log(result4);
