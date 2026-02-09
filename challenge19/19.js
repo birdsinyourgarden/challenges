@@ -11,3 +11,16 @@
  *   de 5, 10, 50, 100 y 200.
  * - Debemos controlar que las monedas enviadas estén dentro de las soportadas.
  */
+
+
+function vendingMachine(coinsArray, selection) {
+    const products = [
+        { name: "cocacola", price: 150 },
+        { name: "water", price: 100 },
+        { name: "chips", price: 120 },
+    ];
+
+    const validCoins = [5, 10, 50, 100, 200];
+
+    
+}
