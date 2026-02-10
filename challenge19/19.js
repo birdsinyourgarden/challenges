@@ -15,12 +15,42 @@
 
 function vendingMachine(coinsArray, selection) {
     const products = [
-        { name: "cocacola", price: 150 },
         { name: "water", price: 100 },
+        { name: "cocacola", price: 150 },
         { name: "chips", price: 120 },
     ];
 
     const validCoins = [5, 10, 50, 100, 200];
 
-    
+    for (let coin of coinsArray) {
+        if (!validCoins.includes(coin)) {
+            return { message: "Invalid coin, returning all money", change: coinsArray };
+        }
+    }
+
+    const product = products[selection];
+    if (!product) {
+        return { message: "Product does not exist, returning all money", change: coinsArray };
+    }
+
+    const totalMoney = coinsArray.reduce((acc, val) => acc + val, 0);
+
+    if (totalMoney < product.price) {
+        return { mesage: "Not enough mony, returning all money", change: coinsArray };
+    }
+
+    let remainingChange = totalMoney - product.price;
+    const change = [];
+    const sortedCoins = [...validCoins].sort((a, b) => b - a);
+
+    for (let coin of sortedCoins) {
+        while (remainingChange >= coin) {
+            change.push(coin);
+            remainingChange -= coin;
+        }
+    }
+
+    return { product: product.name, change }
 }
+
+console.log(vendingMachine([200, 50, 10], 2));
