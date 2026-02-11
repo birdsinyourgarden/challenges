@@ -39,6 +39,27 @@ drawTree(4, '+', 1)
  *  @returns {string} The decorated tree
  */
 function drawTree(height, ornament, frequency) {
-  // Code here
-  return ''
+  let result = [];
+  let position = 0;
+
+  for (let row = 1; row <= height; row++) {
+    const number = row * 2 - 1
+    const spaces = height - row
+    let line = ' '.repeat(spaces);
+
+    for (let i = 0; i < number; i++) {
+      position++
+      line += position % frequency === 0 ? ornament : "*"
+    }
+
+    result.push(line)    
+  }
+
+  result.push(' '.repeat(height - 1) + '#')
+
+  return result.join('\n')
 }
+
+console.log(drawTree(5, 'o', 2));
+console.log(drawTree(3, '@', 3));
+console.log(drawTree(4, '+', 1));
